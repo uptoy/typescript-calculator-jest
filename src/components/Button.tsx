@@ -6,8 +6,8 @@ export enum ButtonType {
     Operation
 }
 
-type Props ={
-    type?:ButtonType
+type Props =React.HTMLProps<HTMLButtonElement>&{
+    buttonType?:ButtonType
     height?:number
     label:string
     position?:[x:number,y:number]
@@ -15,18 +15,19 @@ type Props ={
 }
 
 const StyledButton = styled.button`
-    background:#e48900
+    background:#727171
     border:none
     border-radius:8px
     color:#fff
     font-size:24px
     `
 const Button:React.FC<Props> = ({
-    type = ButtonType.Operation,
+    buttonType = ButtonType.Operation,
     height,
     label,
     position,
     width,
+    onClick
     })=>{
     const styles:React.CSSProperties = {};
     if(position){
@@ -39,11 +40,15 @@ const Button:React.FC<Props> = ({
     if(width){
         styles.gridColumn = `span ${width}`
     }
-    if(type === ButtonType.Number){
+    if(buttonType === ButtonType.Number){
         styles.color = '#000'
         styles.background = '#E48900'
     }
-    return <StyledButton style={styles}>{label}</StyledButton>
+    return (
+        <StyledButton onClick={onClick} style={styles}>
+        {label}
+        </StyledButton>
+    )
 }
 
 export default Button

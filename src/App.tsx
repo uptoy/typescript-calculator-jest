@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import './App.css'
 import Calculator from './components/Calculator'
 
 const Container = styled.div`
